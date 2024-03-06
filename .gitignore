@@ -1,0 +1,6 @@
+__pycache__/
+vocab/
+wandb/
+weights/
+out/
+*.ckpt
