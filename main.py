@@ -10,9 +10,9 @@ from lightning.pytorch.callbacks import ModelCheckpoint
 from lightning.pytorch.callbacks.early_stopping import EarlyStopping
 
 
-def main(train_path="./grandstaff/partitions/train.txt", 
-         val_path="./grandstaff/partitions/val.txt", 
-         test_path="./grandstaff/partitions/val.txt", 
+def main(train_path="/root/model_training/grandstaff/partitions/train.txt", 
+         val_path="/root/model_training/grandstaff/partitions/val.txt", 
+         test_path="/root/model_training/grandstaff/partitions/val.txt", 
          encoding="krn", 
          model_name="CRNN"):
     outpath = f"./out"
@@ -26,9 +26,9 @@ def main(train_path="./grandstaff/partitions/train.txt",
 
     _, i2w = train_dataset.get_dictionaries()
 
-    train_dataloader = DataLoader(train_dataset, batch_size=1, num_workers=6, collate_fn=batch_preparation_ctc)
-    val_dataloader = DataLoader(val_dataset, batch_size=1, num_workers=6, collate_fn=batch_preparation_ctc)
-    test_dataloader = DataLoader(test_dataset, batch_size=1, num_workers=6, collate_fn=batch_preparation_ctc)
+    train_dataloader = DataLoader(train_dataset, batch_size=1, num_workers=3, collate_fn=batch_preparation_ctc, shuffle=True)
+    val_dataloader = DataLoader(val_dataset, batch_size=1, num_workers=3, collate_fn=batch_preparation_ctc, shuffle=True)
+    test_dataloader = DataLoader(test_dataset, batch_size=1, num_workers=3, collate_fn=batch_preparation_ctc)
 
     maxheight, maxwidth = train_dataset.get_max_hw()
 

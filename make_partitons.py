@@ -39,15 +39,7 @@ def main():
         if r.endswith(".bekrn"):
             res_bekern.append(r)
 
-    if platform == "linux":
-        for r in res_bekern:
-            aux = r.replace(dir_replace, "/content/Data/GrandstaffDataset")
-            dataset_list.append(aux)
-    elif platform == "win32":
-        for r in res_bekern:
-            aux = r.replace(dir_replace, "/content/Data/GrandstaffDataset")
-            aux2 = aux.replace("\\", "/")
-            dataset_list.append(aux2)
+    dataset_list = res_bekern
 
     list_test = []
     list_val = []
@@ -88,7 +80,6 @@ def main():
                 train.write(f"{r}")
             else:
                 train.write(f"{r}\n")
-    train.close()
 
     with open (val_path, 'w') as val:
         for r in list_val:
@@ -96,7 +87,6 @@ def main():
                 val.write(f"{r}")
             else:
                 val.write(f"{r}\n")
-    val.close()
 
     with open (test_path, 'w') as test:
         for r in list_test:
@@ -104,7 +94,6 @@ def main():
                 test.write(f"{r}")
             else:
                 test.write(f"{r}\n")
-    test.close()
 
 if __name__ == "__main__":
     main()
